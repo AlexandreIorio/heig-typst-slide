@@ -46,16 +46,16 @@
         align: (left, center, right),
         image("img/heig-vd.png", width: 20%, fit: "contain"), 
         text(slide_title.body),
-        align(right, title + "\n" + subtitle),
+        align(right, subtitle),
       )
       #block(height: 0.2cm)
     ],
     footer: context [
       #set text(header_and_footer_font_size)
       #let authors = if(type(authors) == array) { authors } else { (authors,) }
-      #let footer_left_part = "Author : " + authors.join(", ", last: " and ")
-     
 
+      #let footer_left_part =  authors.join(", ")
+     
       #grid(
         columns: (3fr, 1fr, 3fr),
         grid.cell(
