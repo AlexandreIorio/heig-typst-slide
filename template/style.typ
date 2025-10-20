@@ -36,6 +36,11 @@
     #v(0.2em)
   ]
 
+  show figure.caption: it => [
+      #set text(size: font_size * 0.5, fill: rgb("#6d6c6c"), style: "italic")
+      #it
+    ]
+
   show quote: it => [
     #set quote(block: true)
     #block(breakable: false)[
