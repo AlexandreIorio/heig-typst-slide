@@ -1,5 +1,5 @@
-#import "@preview/polylux:0.4.0": *
 #import "style.typ": apply_presentation_style
+#import "@preview/polylux:0.4.0": *
 
 #let speaker-note = toolbox.pdfpc.speaker-note
 

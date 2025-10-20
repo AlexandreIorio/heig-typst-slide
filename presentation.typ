@@ -1,17 +1,23 @@
 #import "template/template.typ": *
+
 #show: apply_presentation.with(
   title: "Heig-VD Typst Slide Template",
   subtitle: "A template for creating slides with Typst",
   authors: "Alexandre Iorio",
 )
 
-= Title 1
-#lorem(50)
-#speaker-note("This is a speaker note for Title 1 slide.")
+#slide[
+  = Title 1
+  #lorem(30)
 
+  #speaker-note(
+    "This is a speaker note for Title 1 slide.",
+  )
+  #show: later
+  This is some additional content that will appear later.
+]
 == Title 2
 #lorem(30)
-#speaker-note("This is a speaker note for Title 2 slide.")
 === Title 3
 #lorem(20)
 ==== Title 4
@@ -32,7 +38,7 @@ This is a code inside a text: `System.out.println("Hello, World!");`
 
 === Quote Example
 #quote(attribution: "This is a quote from a famous person.")[
-  "Why doing things tomorrow when you can do them the day after tomorrow?"
+  Why doing things tomorrow when you can do them the day after tomorrow?
 ]
 
 === Image Example
