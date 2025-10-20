@@ -1,3 +1,0 @@
-[submodule "heig-typst-report"]
-	path = template/heig-typst-report
-	url = git@github.com:AlexandreIorio/heig-typst-report.git

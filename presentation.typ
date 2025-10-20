@@ -1,16 +1,23 @@
-#import "template/template.typ": apply_presentation
+#import "template/template.typ": *
 #show: apply_presentation.with(
   title: "Heig-VD Typst Slide Template",
   subtitle: "A template for creating slides with Typst",
   authors: "Alexandre Iorio",
 )
 
-== Heading
-=== Slide Title 1
-==== Slide Title 2
+= Title 1
 #lorem(50)
+#speaker-note("This is a speaker note for Title 1 slide.")
 
-== Code Example
+== Title 2
+#lorem(30)
+#speaker-note("This is a speaker note for Title 2 slide.")
+=== Title 3
+#lorem(20)
+==== Title 4
+#lorem(10)
+===== Title 5
+#lorem(5)
 === Code Example 1
 ```java
 public class HelloWorld {
@@ -23,13 +30,13 @@ public class HelloWorld {
 === Code Example 2
 This is a code inside a text: `System.out.println("Hello, World!");`
 
-== Quote Example
+=== Quote Example
 #quote(attribution: "This is a quote from a famous person.")[
   "Why doing things tomorrow when you can do them the day after tomorrow?"
 ]
 
-== Image Example
+=== Image Example
 #align(center)[
-  #image("template/img/image.png")
+  #image("template/img/image.png", height: 10cm)
 ]
 

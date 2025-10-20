@@ -1,7 +1,9 @@
-#import "@preview/slydst:0.1.4": *
-#import "style.typ": apply_presentation_style, font_color
+#import "@preview/polylux:0.4.0": *
+#import "style.typ": apply_presentation_style
 
-#let header_and_footer_font_size = 8pt
+#let speaker-note = toolbox.pdfpc.speaker-note
+
+#let header_and_footer_font_size = 12pt
 #let apply_presentation(
   content,
   title: "MyPresentation",
@@ -9,43 +11,22 @@
   date: none,
   authors: ("Alexandre Iorio",),
   logo_path: "img/heig-vd.png",
-  ratio: 16 / 9,
   titleColor: none,
 ) = {
 
   show: apply_presentation_style
 
-  show: slides.with(
-    title: [
-      #place(top + left)[
-        #image(
-          logo_path,
-          width: 15%,
-          height: -15%,
-          fit: "contain",
-        )
-      ]
-      #title
-    ],
-    subtitle: subtitle,
-    date: none,
-    authors: authors,
-    layout: "medium",
-    ratio: 16 / 9,
-    title-color: font_color
-  )
-
-
   set page(
+    paper: "presentation-16-9",
+    margin: (top: 3cm),
     header: context [
       #set text(header_and_footer_font_size)
       #let headings = query(selector(heading.where(level: 2)))
       #let slide_title = headings.rev().find(x => x.location().page() <= here().page())
       #grid(
-        columns: (1fr, 1fr, 1fr),
-        align: (left, center, right),
+        columns: (1fr,  1fr),
+        align: (left, right),
         image("img/heig-vd.png", width: 20%, fit: "contain"), 
-        text(slide_title.body),
         align(right, subtitle),
       )
       #block(height: 0.2cm)
