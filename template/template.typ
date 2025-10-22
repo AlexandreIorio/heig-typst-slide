@@ -17,17 +17,17 @@
 
   set page(
     paper: "presentation-16-9",
-    margin: (top: 4cm, bottom: 2cm, left: 0.5cm, right: 0.5cm),
+    margin: (top: 2.5cm, bottom: 1.5cm, left: 0.5cm, right: 0.5cm),
     header: context [
       #set text(header_and_footer_font_size)
       #let headings = query(selector(heading.where(level: 2)))
       #let slide_title = headings.rev().find(x => x.location().page() <= here().page())
-      #align(horizon)[
+      #align(bottom)[
 
         #grid(
           columns: (1fr, 1fr),
           align: (left, right),
-          image("img/heig-vd.png", width: 25%, fit: "contain"), align(right, subtitle),
+          image("img/heig-vd.png", width: 15%, fit: "contain"), align(right, subtitle),
         )
         #block(height: 0.2cm)
       ]
