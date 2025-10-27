@@ -1,42 +1,63 @@
 #import "style.typ": apply_presentation_style
 #import "@preview/polylux:0.4.0": *
 
+#let pres_authors = state("Autheur inconnu")
+#let pres_title = state("Titre inconnu")
 
-
+#let debug_zones_color = rgb(255, 0, 0, 0%)
+#let color1 = rgb(36, 136, 135)
+#let color2 = rgb(0, 77, 76)
+#let color3 = rgb(204, 204, 204)
+#let angle = 22deg
+#let image_oblon = "img/illu_informatique.png"
 #let header_and_footer_font_size = 12pt
-#let apply_presentation(
-  content,
-  title: "MyPresentation",
-  subtitle: "MySubtitle",
-  date: none,
-  authors: ("Alexandre Iorio",),
-  logo_path: "img/heig-vd.png",
-  titleColor: none,
-) = {
-  show: apply_presentation_style
+#let logo_path = "img/heig-vd.png"
 
+#let logo(width: auto, height: auto, fit: "contain") = {
+  image(logo_path, width: width, height: height, fit: fit)
+}
+
+#let base_page(content) = {
   set page(
     paper: "presentation-16-9",
-    margin: (top: 2.5cm, bottom: 1.5cm, left: 0.5cm, right: 0.5cm),
+  )
+  content
+}
+
+#let title_page(content) = {
+  logo(width: 5cm)
+  align(horizon)[
+    #block(height: 9.5cm, width: 100%, fill: debug_zones_color)[
+      #content
+    ]
+  ]
+}
+
+#let content_page(content, section: none) = {
+  set page(
     header: context [
       #set text(header_and_footer_font_size)
-      #let headings = query(selector(heading.where(level: 2)))
-      #let slide_title = headings.rev().find(x => x.location().page() <= here().page())
-      #align(bottom)[
-
+      #place(bottom)[
         #grid(
+          fill: debug_zones_color,
           columns: (1fr, 1fr),
-          align: (left, right),
-          image("img/heig-vd.png", width: 15%, fit: "contain"), align(right, subtitle),
+          grid.cell()[
+            #logo(height: 1cm)
+          ],
+          grid.cell()[
+            #place(horizon + right)[
+              #pres_title.get()
+            ]
+          ],
         )
-        #block(height: 0.2cm)
       ]
+
     ],
+
     footer: context [
       #set text(header_and_footer_font_size)
-      #let authors = if (type(authors) == array) { authors } else { (authors,) }
 
-      #let footer_left_part = authors.join(", ")
+      #let footer_left_part = pres_authors.get()
       #align(horizon)[
 
         #grid(
@@ -52,7 +73,7 @@
           ),
           grid.cell(
             x: 2,
-            align(right + top, title),
+            align(right + top, section),
           ),
         )
       ]
@@ -61,5 +82,17 @@
   align(horizon)[
     #content
   ]
+}
+
+#let apply_presentation(
+  content,
+  title: "MyPresentation",
+  authors: "auteur inconnu",
+) = {
+  show: apply_presentation_style
+  show: base_page
+  pres_authors.update(authors)
+  pres_title.update(title)
+  content
 }
 
