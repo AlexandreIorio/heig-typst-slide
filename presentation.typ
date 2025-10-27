@@ -10,7 +10,7 @@
   = Title 1
   #lorem(30)
 
-  #speaker-note(
+  #toolbox.pdfpc.speaker-note(
     "This is a speaker note for Title 1 slide.",
   )
   #show: later
